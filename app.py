@@ -21,8 +21,20 @@ if uploaded_file is not None:
     st.info("Reading candidate pool...")
     candidates = []
     
-    # Read line-by-line
-    stringio = io.StringIO(uploaded_file.getvalue().decode("utf-8"))
+    bytes_data = uploaded_file.getvalue()
+    
+    # Handle gzipped files (.gz) or raw text files
+    if bytes_data.startswith(b'\x1f\x8b'):
+        import gzip
+        try:
+            text_data = gzip.decompress(bytes_data).decode("utf-8", errors="replace")
+        except Exception as e:
+            st.error(f"Failed to decompress gzip file: {e}")
+            st.stop()
+    else:
+        text_data = bytes_data.decode("utf-8", errors="replace")
+            
+    stringio = io.StringIO(text_data)
     for line in stringio:
         if not line.strip():
             continue
