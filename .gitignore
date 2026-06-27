@@ -1,0 +1,13 @@
+candidates.jsonl
+candidates.jsonl.gz
+.gemini/
+__pycache__/
+*.pyc
+*.log
+.system_generated/
+tmp/
+*.docx
+validate_submission.py
+sample_candidates.json
+sample_submission.csv
+submission_metadata_template.yaml
