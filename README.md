@@ -2,7 +2,7 @@
 
 This repository contains the candidate ranking AI designed to find the top 100 candidates for the **Senior AI Engineer — Founding Team** role at Redrob AI.
 
-## 🚀 Reproduction Command
+## Reproduction Command
 
 To reproduce the submission file `team_aven.csv` from the 100k candidate pool, run the following command in your terminal. This command runs end-to-end on CPU in **~10 seconds**, well within the 5-minute constraint.
 
@@ -10,7 +10,7 @@ To reproduce the submission file `team_aven.csv` from the 100k candidate pool, r
 python rank.py --candidates ./candidates.jsonl --out ./submission.csv
 ```
 
-## 🛠️ Setup & Installation
+## Setup & Installation
 
 Ensure you have Python 3.8+ installed, then install the dependencies:
 
@@ -18,7 +18,7 @@ Ensure you have Python 3.8+ installed, then install the dependencies:
 pip install -r requirements.txt
 ```
 
-## 📐 2-Stage Pipeline Architecture
+## 2-Stage Pipeline Architecture
 
 To handle the trade-off between recall, latency, and profile authenticity, our system uses a **2-stage pipeline**:
 
@@ -39,7 +39,8 @@ To handle the trade-off between recall, latency, and profile authenticity, our s
 - **Behavioral Signal Modifier (20% Multiplicative)**: Applies a multiplier based on recruiter response rates, login recency, and GitHub activity scores.
 - **Deterministic Tiebreaking**: Automatically resolves score ties alphabetically by candidate ID.
 
-## 📦 Sandbox App (HuggingFace Spaces)
+## Sandbox App (HuggingFace Spaces)
+Sandbox Link : https://huggingface.co/spaces/sivaramakrishna123/India_runs_hackathon
 The sandbox interface is defined in `app.py`. To run the sandbox locally:
 ```bash
 streamlit run app.py
