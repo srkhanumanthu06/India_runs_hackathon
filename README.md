@@ -7,7 +7,7 @@ This repository contains the candidate ranking AI designed to find the top 100 c
 To reproduce the submission file `team_aven.csv` from the 100k candidate pool, run the following command in your terminal. This command runs end-to-end on CPU in **~10 seconds**, well within the 5-minute constraint.
 
 ```bash
-python rank.py --candidates ./candidates.jsonl --out ./submission.csv
+python rank.py --candidates ./candidates.jsonl --out ./team_aven.csv
 ```
 
 ## Setup & Installation
