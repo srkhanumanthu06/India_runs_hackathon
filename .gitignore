@@ -4,7 +4,7 @@ candidates.jsonl.gz
 __pycache__/
 *.pyc
 *.log
-.system_generated/
+
 tmp/
 *.docx
 validate_submission.py

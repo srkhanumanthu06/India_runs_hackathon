@@ -11,7 +11,7 @@ from rank import is_honeypot, calculate_heuristic_score, score_candidate_stage2,
 
 st.set_page_config(page_title="Redrob Candidate Ranker", layout="wide")
 
-st.title("🎯 Redrob AI Candidate Discovery & Ranking Sandbox")
+st.title("Candidate Ranking AI - Aven AI")
 st.markdown("Upload a candidate pool in JSONL format to see the top ranks.")
 
 uploaded_file = st.file_uploader("Upload candidates.jsonl", type=["jsonl", "json"])
@@ -104,6 +104,6 @@ if uploaded_file is not None:
         st.download_button(
             label="Download Ranked CSV",
             data=csv_data.getvalue(),
-            file_name="submission.csv",
+            file_name="team_aven.csv",
             mime="text/csv"
         )
