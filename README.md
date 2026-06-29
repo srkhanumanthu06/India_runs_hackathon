@@ -1,10 +1,10 @@
-# Intelligent Candidate Ranking — Redrob Hackathon
+# Aven AI - Candidate Ranking AI
 
 This repository contains the candidate ranking AI designed to find the top 100 candidates for the **Senior AI Engineer — Founding Team** role at Redrob AI.
 
 ## 🚀 Reproduction Command
 
-To reproduce the submission file `submission.csv` from the 100k candidate pool, run the following command in your terminal. This command runs end-to-end on CPU in **~10 seconds**, well within the 5-minute constraint.
+To reproduce the submission file `team_aven.csv` from the 100k candidate pool, run the following command in your terminal. This command runs end-to-end on CPU in **~10 seconds**, well within the 5-minute constraint.
 
 ```bash
 python rank.py --candidates ./candidates.jsonl --out ./submission.csv
