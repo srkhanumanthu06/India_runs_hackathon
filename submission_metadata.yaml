@@ -7,8 +7,8 @@ team_name: "team_lone_aven"
 
 primary_contact:
   name: "Siva Rama Krishna Hanumanthu"
-  email: "srkhanumanthu06@gmail.com"   # Used for all organizer communication
-  phone: "+91-9999999999"        # Used for top-50 / top-10 outreach
+  email: "srkhanumanthu06@gmail.com"   
+  phone: "+91-8978518346"
 
 team_members: 1
   name: "Siva Rama Krishna Hanumanthu"
@@ -18,9 +18,9 @@ team_members: 1
 # ============================================================================
 # Code and reproducibility
 # ============================================================================
-github_repo: "
+github_repo: "https://github.com/srkhanumanthu06/India_runs_hackathon"
 
-sandbox_link: "https://huggingface.co/spaces/solver/redrob-ranker"
+sandbox_link: "https://huggingface.co/spaces/sivaramakrishna123/India_runs_hackathon"
 
 reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submission.csv"
 
