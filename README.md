@@ -1,4 +1,4 @@
-# Intelligent Candidate Discovery & Ranking Challenge — Redrob Hackathon
+# Intelligent Candidate Ranking — Redrob Hackathon
 
 This repository contains the candidate ranking AI designed to find the top 100 candidates for the **Senior AI Engineer — Founding Team** role at Redrob AI.
 
