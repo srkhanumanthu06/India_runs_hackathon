@@ -41,6 +41,7 @@ To handle the trade-off between recall, latency, and profile authenticity, our s
 
 ## Sandbox App (HuggingFace Spaces)
 Sandbox Link : https://huggingface.co/spaces/sivaramakrishna123/India_runs_hackathon
+
 The sandbox interface is defined in `app.py`. To run the sandbox locally:
 ```bash
 streamlit run app.py
