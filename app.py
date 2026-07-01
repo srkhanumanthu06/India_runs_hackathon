@@ -11,39 +11,72 @@ from rank import is_honeypot, calculate_heuristic_score, score_candidate_stage2,
 
 st.set_page_config(page_title="Redrob Candidate Ranker", layout="wide")
 
+import os
+
 st.title("Candidate Ranking AI - Aven AI")
-st.markdown("Upload a candidate pool in JSONL format to see the top ranks.")
+st.markdown("Upload a candidate pool or select a local/pre-loaded file to view the ranking.")
 
-uploaded_file = st.file_uploader("Upload candidates.jsonl", type=["jsonl", "json"])
+# Sidebar data source selector
+st.sidebar.title("Data Source Settings")
+source_option = st.sidebar.radio(
+    "Select Candidate Data Source:",
+    ("Upload File (jsonl / gz)", "Use Local 'sample_candidates.json'", "Use Local 'candidates.jsonl' (if present)")
+)
 
-if uploaded_file is not None:
-    # Read candidates
+uploaded_file = None
+local_path = None
+
+if source_option == "Upload File (jsonl / gz)":
+    uploaded_file = st.file_uploader("Upload candidates.jsonl or candidates.jsonl.gz", type=["jsonl", "json", "gz"])
+elif source_option == "Use Local 'sample_candidates.json'":
+    if os.path.exists("sample_candidates.json"):
+        local_path = "sample_candidates.json"
+    else:
+        st.error("sample_candidates.json not found in the current directory.")
+elif source_option == "Use Local 'candidates.jsonl' (if present)":
+    if os.path.exists("candidates.jsonl"):
+        local_path = "candidates.jsonl"
+    elif os.path.exists("candidates.jsonl.gz"):
+        local_path = "candidates.jsonl.gz"
+    else:
+        st.error("Neither candidates.jsonl nor candidates.jsonl.gz was found in the current directory.")
+
+# Run ranking logic if a data source is available
+if uploaded_file is not None or local_path is not None:
     st.info("Reading candidate pool...")
     candidates = []
     
-    bytes_data = uploaded_file.getvalue()
-    
-    # Handle gzipped files (.gz) or raw text files
-    if bytes_data.startswith(b'\x1f\x8b'):
-        import gzip
-        try:
-            text_data = gzip.decompress(bytes_data).decode("utf-8", errors="replace")
-        except Exception as e:
-            st.error(f"Failed to decompress gzip file: {e}")
-            st.stop()
-    else:
-        text_data = bytes_data.decode("utf-8", errors="replace")
-            
-    stringio = io.StringIO(text_data)
-    for line in stringio:
-        if not line.strip():
-            continue
-        try:
-            candidates.append(json.loads(line))
-        except Exception as e:
-            st.error(f"Failed to parse line: {e}")
-            
-    st.success(f"Successfully loaded {len(candidates)} candidates.")
+    try:
+        if uploaded_file is not None:
+            bytes_data = uploaded_file.getvalue()
+        else:
+            with open(local_path, "rb") as f:
+                bytes_data = f.read()
+                
+        # Handle gzipped files (.gz) or raw text files
+        if bytes_data.startswith(b'\x1f\x8b'):
+            import gzip
+            try:
+                text_data = gzip.decompress(bytes_data).decode("utf-8", errors="replace")
+            except Exception as e:
+                st.error(f"Failed to decompress gzip file: {e}")
+                st.stop()
+        else:
+            text_data = bytes_data.decode("utf-8", errors="replace")
+                
+        stringio = io.StringIO(text_data)
+        for line in stringio:
+            if not line.strip():
+                continue
+            try:
+                candidates.append(json.loads(line))
+            except Exception as e:
+                st.error(f"Failed to parse line: {e}")
+                
+        st.success(f"Successfully loaded {len(candidates)} candidates.")
+    except Exception as e:
+        st.error(f"Failed to read file: {e}")
+        st.stop()
     
     # Run Stage 1 (Fast Filtering)
     filtered_pool = []
