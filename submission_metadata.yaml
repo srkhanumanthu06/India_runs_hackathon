@@ -49,7 +49,7 @@ ai_tools_used:
 ai_usage_summary: |
   Used Gemini to implement the two-stage ranking pipeline in Python.
   Used Cursor as the core IDE for development through AI-assisted coding and inline edits.
-  Used Antigravity to analyze and sort honeypot candidates profiles.
+  Used Antigravity to analyze and debug the final version of application.
 
 # ============================================================================
 # Approach summary (optional but recommended)
